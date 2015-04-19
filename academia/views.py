@@ -14,3 +14,6 @@ class CapituloListView(ListView):
 class RecursoListView(ListView):
     model = Recurso
     template_name = "recurso_list.html"
+
+class BlogView(TemplateView):
+    template_name = "blog.html"
