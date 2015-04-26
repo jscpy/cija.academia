@@ -3,7 +3,7 @@ from django_markdown.admin import MarkdownModelAdmin
 from django.db.models import TextField
 from academia.models import Capitulo, Recurso, Usuario, Post
 
-admin.site.register(Capitulo)
+admin.site.register(Capitulo, MarkdownModelAdmin)
 admin.site.register(Recurso)
 admin.site.register(Usuario)
-admin.site.register(Post,MarkdownModelAdmin)
+admin.site.register(Post, MarkdownModelAdmin)
