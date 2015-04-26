@@ -36,9 +36,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_markdown',
     'academia',
-    'material',
-    'material.admin',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -87,16 +86,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
-STATIC_PATH = os.path.join(BASE_DIR,'static')
+#STATIC_PATH = os.path.join(BASE_DIR,'static')
+
+STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (
-    STATIC_PATH,
-)
+#STATICFILES_DIRS = ( STATIC_PATH, )
 
 TEMPLATE_PATH = os.path.join(BASE_DIR, 'templates')
 
 TEMPLATE_DIRS = (
     TEMPLATE_PATH, 
 )
+
+MARKDOWN_EDITOR_SKIN = 'simple'

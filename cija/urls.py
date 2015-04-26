@@ -5,6 +5,7 @@ from academia.views import HomeView, CapituloListView, RecursoListView, PostList
 admin.autodiscover()
 
 urlpatterns = patterns('',
+	url(r'^markdown/', include("django_markdown.urls")),
     url(r'^$', HomeView.as_view() ),
     url(r'^capitulos/', CapituloListView.as_view() ),
     url(r'^material/', RecursoListView.as_view() ),
