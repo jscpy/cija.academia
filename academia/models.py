@@ -3,7 +3,7 @@ from django_markdown.models import MarkdownField
 
 class Capitulo(models.Model):
     titulo = models.CharField(max_length=100)
-    objetivo = models.TextField()
+    objetivo = MarkdownField()
 
     def __unicode__(self):
     	return self.titulo

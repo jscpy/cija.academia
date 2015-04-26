@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load django_markdown  %}
 
 {% block content %}
 <div class="container-fluid">
@@ -27,7 +28,7 @@
 				<h2 class="sub-header">
 					<a id="{{ capitulo.id }}">{{ capitulo.titulo }}</a>
 				</h2>
-				<p>{{ capitulo.objetivo }}</p>
+				<p>{{ capitulo.objetivo|markdown }}</p>
 			{% endfor %}
 		</div>
 	</div>
