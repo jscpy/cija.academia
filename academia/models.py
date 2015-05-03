@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.urlresolvers import reverse
 from django_markdown.models import MarkdownField
 
 class Capitulo(models.Model):
@@ -33,7 +34,22 @@ class Post(models.Model):
     def __unicode__(self):
         return self.encabezado
 
+    def  get_absolute_url(self):
+        return reverse('post_detalles', kwargs = {'pk':self.id})
+
     class Meta:
-        ordering = ["-fecha"]
+        ordering = ["-id"]
+
+class Comentario(models.Model):
+    usuario = models.CharField(max_length=100)
+    comentario = models.TextField()
+    post = models.ForeignKey(Post)
+    fecha = models.DateField(auto_now=True)
+
+    def __unicode__(self):
+        return self.usuario
+
+    class Meta:
+        ordering = ["-id"]
 
 

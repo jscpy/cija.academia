@@ -8,69 +8,41 @@
 	<div class="row">
 	<!-- Entradas del Blog -->
 		<div class="col-md-8">
-			<h1 class="page-header"> Academia CISCO </h1>
+			<h2 class="page-header"> Academia CISCO </h2>
 			<!-- Blog Post -->
 			{% for post in object_list %}
-			<h2> <a href="#">{{ post.encabezado }}</a> </h2>
-			<p class="lead">
-				por <a href="#">{{ post.usuario }}</a>
-			</p>
+			<h2>{{ post.encabezado }}</h2> <p class="lead"> por {{ post.usuario }}</p>
 			<p><span class="glyphicon glyphicon-time"></span> {{ post.fecha }} </p>
 		<hr>
-			<p>{{ post.cuerpo|markdown }}</p>
-			<a class="btn btn-primary" href="#">Leer más <span class="glyphicon glyphicon-chevron-right"></span></a>
+			<a href="{% url 'post_detalles' pk=post.id %}" class="btn btn-primary" role="button" >Leer más &raquo;</a>
 		<hr>
 			{% endfor %}
 			
-			<!-- Paginador
+			<!-- Paginador -->
+			{% if is_paginated %}
 			<ul class="pager">
+			 {% if page_obj.has_previous %}
 				<li class="previous">
-					<a href="#">&larr; Atrás</a>
+					<a href="/blog?page={{page_obj.previous_page_number}}">&larr; Atrás</a>
 				</li>
+			{% endif %}
+			{% if page_obj.has_next %}
 				<li class="next">
-					<a href="#">Nuevo &rarr;</a>
+					<a href="/blog?page={{page_obj.next_page_number}}">Siguiente &rarr;</a>
 				</li>
-			</ul>  -->
+			{% endif %}
+			</ul>
+			{% endif %}
+
 		</div>
 
 		<!-- Blog Sidebar -->
 		<div class="col-md-4">
-			<!-- Blog Search Well 
-			<div class="well">
-				<h4>Buscar en el Blog</h4>
-				<div class="input-group">
-					<input type="text" class="form-control">
-					<span class="input-group-btn">
-						<button class="btn btn-default" type="button">
-							<span class="glyphicon glyphicon-search"></span>
-					</button>
-					</span>
-				</div>
-			</div> -->
+			<!-- Blog Categories -->
+			{% include 'menu.html' %}
 
-		<!-- Blog Categories Well
-			<div class="well">
-				<h4>Categorias</h4>
-				<div class="row">
-					<div class="col-lg-6">
-						<ul class="list-unstyled">
-							<li> <a href="#">Crear Post</a> </li>
-						</ul>
-					</div> 
-					<div class="col-lg-6">
-						<ul class="list-unstyled">
-							<li> <a href="#">Crear una Cuenta</a> </li>
-						</ul>
-					</div> 
-				</div> 
-			</div>
-		 -->
-			
-		<!-- Side Widget Well -->
-			<div class="well">
-				<h4>Frase del Día</h4>
-				<p> <em>No podemos ver más que a corta distancia delante de nosotros, pero podemos ver claramente que hay mucho que hacer.   </em><strong>Alan Turing.</strong> </p>
-			</div>
+			<!-- Side Widget -->
+			{% include 'frases.html' %}
 		</div>
 	</div> <!-- /.row -->
 	
