@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load django_markdown %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="container">
+<div class="row">
+	<!-- Entradas del Blog -->
+	<div class="col-md-8">
+		<h2 class="page-header"> Academia CISCO </h2>
+		<!-- Blog Post -->
+		<h2>{{ post.encabezado }}</h2>
+		<p class="lead">
+			por {{ post.usuario }}
+		</p>
+		<p><span class="glyphicon glyphicon-time"></span> {{ post.fecha }} </p>
+	<hr>
+		<p>{{ post.cuerpo|markdown }}</p>
+	<hr>
+	
+	<!-- Comentarios del Blog -->
+		<!-- Formulario-->
+		<div class="well">
+		<h4>Deja un comentario:</h4>
+			<form role="form" action="{% url 'comentario_crear' pk=post.id %}"  method="POST" id="FormComentario">
+			{% csrf_token %}
+			<div class="form-group" >
+				<div class="input-group">
+					<span class="input-group-addon">
+						<span class="glyphicon glyphicon-user"></span>
+					</span>
+						{{ form.usuario}}
+				</div>
+			</div>
+				<div class="form-group">
+					{{ form.comentario }}
+				</div>
+				<button type="submit" class="btn btn-primary">Enviar</button>
+			</form>
+		</div>
+	<hr>
+	<!-- Comentarios Publicados -->
+		<!-- Comentarios -->
+		<div class="media">
+			<div class="media-body">
+			{% if comentarios %}		
+				{% for comentario in comentarios %}
+					<h4 class="media-heading">{{comentario.usuario}} - <small>{{comentario.fecha}}</small></h4>
+					<p>{{comentario.comentario}}</p>
+					<br>
+				{% endfor %}
+			{% else %}
+				<h4>No hay comentarios<h4>
+			{% endif %}
+			</div>
+		</div>
+	</div>
+	
+	<!-- Blog Sidebar -->
+	<div class="col-md-4">
+		<!-- Blog Categories Well -->
+		{% include 'menu.html' %}
+
+		<!-- Side Widget -->
+		{% include 'frases.html' %}
+	</div>
+</div> <!-- /.row -->
+
+	<hr>
+	<!-- Footer -->
+	<footer>
+		<div class="row">
+			<div class="col-lg-12">
+				<p>Copyright &copy; CIJ Acapulco 2015</p>
+			</div> <!-- /.col-lg-12 -->
+		</div> <!-- /.row -->
+	</footer>
+</div> <!-- /.container -->
+{% endblock %}
