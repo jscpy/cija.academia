@@ -1,57 +1,54 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
 {% block content %}
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-sm-3 col-md-2 sidebar">
-			<ul class="nav nav-sidebar">
-				<li class="active"><a href="#"> IT Essentials <span class="sr-only">(current)</span></a></li>
-				<li><a href='#'>1. Introducción a la computadora personal</a></li>
-				<li><a href="#">2. Procedimientos de laboratorio y uso de herramientas</a></li>
-				<li><a href="#">3. Armado de PC</a></li>
-				<li><a href="#">4. Descripción general del mantenimiento preventivo</a></li>
-				<li><a href="#">5. Sistemas operativos</a></li>
-				<li><a href="#">6. Redes</a></li>
-				<li><a href="#">7. Computadoras portátiles</a></li>
-				<li><a href="#">8. Dispositivos móviles</a></li>
-				<li><a href="#">9. Impresoras</a></li>
-				<li><a href="#">10. Seguridad</a></li>
-				<li><a href="#">11. El profesional de TI</a></li>
-				<li><a href="#">12. Resolución avanzada de problemas</a></li>
-			</ul>
-		</div>
-
-		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-			<h1 class="page-header">IT Essentials</h1>
-			<div class="table-responsive">
-				<table class="table table-striped">
-					<thead>
-						<tr>
-							<th>#</th>
-							<th>Capitulo</th>
-							<th>Material</th>
-							<th>URL</th>
-							<th>Fecha</th>
-						</tr>
-					</thead>
-					<tbody>
-					{% for recurso in object_list %}
-						<tr>
-							<td>{{ recurso.id }}</td>
-							<td>
-							<a id="{{ recurso.id }}"> {{ recurso.capitulo }} </a>
-							</td>
-							<td>{{ recurso.descripcion }}</td>
-							<td> 
-							<a href="{{ recurso.url }}"> {{ recurso.url }} </a>
-							</td>
-							<td>{{ recurso.fecha}}</td>
-						</tr>
-					{% endfor %}
-					</tbody>
-				</table>
+<!-- Page Header -->
+<header class="intro-header" style="background-color: gray">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+				<div class="site-heading">
+					<h1>Academia CISCO</h1>
+					<hr class="small">
+					<span class="subheading">Material del curso</span>
+				</div>
 			</div>
 		</div>
 	</div>
+</header>
+
+<!-- Recursos de la academia -->
+<div class="container">
+	<div class="row">
+	<h1 class="page-header">IT Essentials</h1>
+		<div class="table-responsive">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Capitulo</th>
+						<th>Material</th>
+						<th>URL</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for recurso in object_list %}
+					<tr>
+						<td>{{ recurso.id }}</td>
+						<td>
+							<a id="{{ recurso.id }}"> {{ recurso.capitulo }} </a>
+						</td>
+						<td>{{ recurso.descripcion }}</td>
+						<td> 
+							<a href="{{ recurso.url }}"> {{ recurso.url }} </a>
+						</td>
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
 </div>
+<hr>
+<br>
 {% endblock %}

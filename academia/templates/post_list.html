@@ -1,25 +1,41 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 {% load django_markdown %}
 
 {% block content %}
+<!-- Page Header -->
+<header class="intro-header" style="background-color: gray">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+				<div class="site-heading">
+					<h1>Academia CISCO</h1>
+					<hr class="small">
+					<span class="subheading">Blog</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
 
-<!-- Contenido de la pagina -->
+<!-- Publicaciones realizadas -->
 <div class="container">
 	<div class="row">
-	<!-- Entradas del Blog -->
-		<div class="col-md-8">
-		
-			<!-- Blog Post -->
-			{% for post in object_list %}
-			<h2>{{ post.encabezado }}</h2> <p class="lead"> por {{ post.usuario }}</p>
-			<p><span class="glyphicon glyphicon-time"></span> {{ post.fecha }} </p>
-		<hr>
-			<a href="{% url 'post_detalles' pk=post.id %}" class="btn btn-primary" role="button" >Leer más &raquo;</a>
-		<hr>
-			{% endfor %}
-			
-			<!-- Paginador -->
-			{% if is_paginated %}
+		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+		<!-- Blog Post -->
+		{% for post in object_list %}
+			<div class="post-preview">
+				<a href="{% url 'post_detalles' pk=post.id %}">
+					<h2 class="post-title"> {{ post.encabezado }} </h2>
+					<h3 class="post-subtitle"> {{ post.usuario }} </h3>
+				</a>
+				<p class="post-meta"> <span class="glyphicon glyphicon-time"></span> {{ post.fecha }} </p>
+			</div>                
+			<hr>
+		{% endfor %}
+
+		<!-- Paginador -->
+		{% if is_paginated %}
 			<ul class="pager">
 			 {% if page_obj.has_previous %}
 				<li class="previous">
@@ -32,28 +48,11 @@
 				</li>
 			{% endif %}
 			</ul>
-			{% endif %}
-
+		{% endif %}
+		<br>
 		</div>
-
-		<!-- Blog Sidebar -->
-		<div class="col-md-4">
-			<!-- Blog Categories -->
-			{% include 'menu.html' %}
-
-			<!-- Side Widget -->
-			{% include 'frases.html' %}
-		</div>
-	</div> <!-- /.row -->
-	
-	<hr>
-	<!-- Footer -->
-	<footer>
-		<div class="row">
-			<div class="col-lg-12">
-				<p>Copyright &copy; CIJ Acapulco 2015</p>
-			</div> <!-- /.col-lg-12 -->
-		</div> <!-- /.row -->
-	</footer>
-</div> <!-- /.container -->
+	</div>
+</div>
+<hr>
+<br>
 {% endblock %}

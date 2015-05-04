@@ -1,36 +1,37 @@
 {% extends "base.html" %}
-{% load django_markdown  %}
+{% load staticfiles %}
+{% load django_markdown %}
 
 {% block content %}
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-sm-3 col-md-2 sidebar">
-			<ul class="nav nav-sidebar">
-				<li class="active"><a href="#"> IT Essentials <span class="sr-only">(current)</span></a></li>
-				<li><a href="#1">1. Introducción a la computadora personal</a></li>
-				<li><a href="#2">2. Procedimientos de laboratorio y uso de herramientas</a></li>
-				<li><a href="#3">3. Armado de PC</a></li>
-				<li><a href="#4">4. Descripción general del mantenimiento preventivo</a></li>
-				<li><a href="#5">5. Sistemas operativos</a></li>
-				<li><a href="#6">6. Redes</a></li>
-				<li><a href="#7">7. Computadoras portátiles</a></li>
-				<li><a href="#8">8. Dispositivos móviles</a></li>
-				<li><a href="#9">9. Impresoras</a></li>
-				<li><a href="#10">10. Seguridad</a></li>
-				<li><a href="#11">11. El profesional de TI</a></li>
-				<li><a href="#12">12. Resolución avanzada de problemas</a></li>
-			</ul>
+<!-- Page Header -->
+<header class="intro-header" style="background-color: gray">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+				<div class="site-heading">
+					<h1>Academia CISCO</h1>
+					<hr class="small">
+					<span class="subheading">Contenido del curso</span>
+				</div>
+			</div>
 		</div>
+	</div>
+</header>
 
-		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-			<h1 class="page-header">IT Essentials</h1>
+<!-- Capitulos del curso -->
+<div class="container">
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+				<h1 class="page-header">IT Essentials</h1>
 			{% for capitulo in object_list %}
 				<h2 class="sub-header">
 					<a id="{{ capitulo.id }}">{{ capitulo.titulo }}</a>
 				</h2>
-				<p>{{ capitulo.objetivo|markdown }}</p>
+				{{ capitulo.objetivo|markdown }}
 			{% endfor %}
+			</div>
 		</div>
-	</div>
 </div>
+<hr>
+<br>
 {% endblock %}

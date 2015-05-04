@@ -1,48 +1,63 @@
 {% extends "base.html" %}
-{% load django_markdown %}
 {% load staticfiles %}
+{% load django_markdown %}
 
 {% block content %}
-<div class="container">
-<div class="row">
-
-	<!-- Entradas del Blog -->
-	<div class="col-md-8">
-	
-		<!-- Blog Post -->
-		<h2>{{ post.encabezado }}</h2>
-		<p class="lead">
-			por {{ post.usuario }}
-		</p>
-		<p><span class="glyphicon glyphicon-time"></span> {{ post.fecha }} </p>
-	<hr>
-		{{ post.cuerpo|markdown }}
-	<hr>
-	
-	<!-- Comentarios del Blog -->
-		<!-- Formulario-->
-		<div class="well">
-		<h4>Deja un comentario:</h4>
-			<form role="form" action="{% url 'comentario_crear' pk=post.id %}"  method="POST" id="FormComentario">
-			{% csrf_token %}
-			<div class="form-group" >
-				<div class="input-group">
-					<span class="input-group-addon">
-						<span class="glyphicon glyphicon-user"></span>
-					</span>
-						{{ form.usuario}}
+<!-- Page Header -->
+<header class="intro-header" style="background-color: gray">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+				<div class="post-heading">
+					<h1>{{post.encabezado}}</h1>
+					<h2 class="subheading">{{post.usuario}}</h2>
+					<p class="post-meta"> 
+						<span class="glyphicon glyphicon-time"></span> {{ post.fecha }} 
+					</p>
 				</div>
 			</div>
-				<div class="form-group">
-					{{ form.comentario }}
+		</div>
+	</div>
+</header>
+
+<!-- Contenido del Post -->
+<article>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+				{{ post.cuerpo|markdown }}
+			</div>
+		</div>
+	</div>
+</article>
+<hr>
+
+<!-- Formulario-->
+<div class="container">
+	<div class="row">
+	<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+		<div class="well">
+		<h4>Deja un comentario:</h4>
+			<form role="form" action="{% url 'comentario_crear' pk=post.id %}" method="POST" id="FormComentario">
+				{% csrf_token %}
+				<div class="form-group" >
+					<div class="input-group">
+						<span class="input-group-addon">
+							<span class="glyphicon glyphicon-user"></span>
+						</span>
+							{{ form.usuario}}
+					</div>
 				</div>
+					<div class="form-group">
+						{{ form.comentario }}
+					</div>
 				<button type="submit" class="btn btn-primary">Enviar</button>
 			</form>
 		</div>
 	<hr>
-	
-	<!-- Comentarios Publicados -->
-		<!-- Comentarios -->
+	<br>
+
+<!-- Comentarios Publicados -->
 		<div class="media">
 			<div class="media-body">
 			{% if comentarios %}		
@@ -57,25 +72,8 @@
 			</div>
 		</div>
 	</div>
-	
-	<!-- Blog Sidebar -->
-	<div class="col-md-4">
-		<!-- Blog Categories Well -->
-		{% include 'menu.html' %}
-
-		<!-- Side Widget -->
-		{% include 'frases.html' %}
 	</div>
-</div> <!-- /.row -->
-
-	<hr>
-	<!-- Footer -->
-	<footer>
-		<div class="row">
-			<div class="col-lg-12">
-				<p>Copyright &copy; CIJ Acapulco 2015</p>
-			</div> <!-- /.col-lg-12 -->
-		</div> <!-- /.row -->
-	</footer>
-</div> <!-- /.container -->
+</div>
+<hr>
+<br>
 {% endblock %}
