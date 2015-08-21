@@ -1,0 +1,31 @@
+<br/><br/><br/>
+<form action="" method="post" accept-charset="utf-8" role="form" >
+	{% csrf_token %}
+	<div class="row">
+		<div class="col-md-4 col-md-offset-1" >
+			{{ medicamento.concepto.label_tag }}
+			{{ medicamento.concepto }}
+			<br>
+			{{ medicamento.presentacion.label_tag }}
+			{{ medicamento.presentacion }}
+			<br>
+			{{ medicamento.unidad_medida.label_tag }}
+			{{ medicamento.unidad_medida }}
+		</div>
+		<div class="col-md-4 col-md-offset-1" >
+			{{ medicamento.lote.label_tag }}
+			{{ medicamento.lote }}
+			<br>
+			{{ medicamento.cantidad.label_tag }}
+			{{ medicamento.cantidad }}
+			<br>
+			{{ medicamento.fecha_caducidad.label_tag }}
+			{{ medicamento.fecha_caducidad }}
+		</div>
+	</div>
+	<br><hr>
+	<center>
+		<button type="submit" class="btn btn-primary">Enviar</button>
+	</center>
+	<br>
+</form>

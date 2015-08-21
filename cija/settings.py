@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'ioq*5!ind0967lvclt8)*s#c0)8njus%o)4^_$f&fb$t-l^ko@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 TEMPLATE_DEBUG = True
 
@@ -30,6 +30,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = (
+    'flat',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django_markdown',
     'academia',
+    'enfermeria',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -92,11 +94,7 @@ STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
 STATIC_URL = '/static/'
 
-#STATICFILES_DIRS = ( STATIC_PATH, )
-
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
-
-MEDIA_URL = '/media/'
+#STATICFILES_DIRS = (STATIC_PATH, )
 
 TEMPLATE_PATH = os.path.join(BASE_DIR, 'templates')
 

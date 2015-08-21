@@ -1,0 +1,14 @@
+{% extends 'enfermeria/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<div role="tabpanel">
+	<!-- Navegación Principal -->
+	{% include 'enfermeria/navbar_admin.html' %}
+
+	<!-- Menús principales -->
+	<div class="tab-content">
+		{% include 'enfermeria/tabs_admin.html' %}
+	</div>
+</div>
+{% endblock %}
